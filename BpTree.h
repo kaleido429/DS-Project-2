@@ -6,20 +6,23 @@
 #include "BpTreeIndexNode.h"
 #include "EmployeeData.h"
 #include "SelectionTree.h"
+#include <fstream>
+#include <vector>
 
 class BpTree {
 private:
 	BpTreeNode* root;
 	int	order;		// m children
+	std::ofstream* fout;
 
 public:
-	BpTree(ofstream *fout, int order = 3) {
-		
+	BpTree(std::ofstream *fout, int order = 3) {
+		this->fout = fout;
+		root = NULL;
+		this->order = order;
 	}
 	
-	~BpTree() {
-
-	}
+	~BpTree();
 
 	/* essential */
 	bool		Insert(EmployeeData* newData);
@@ -30,6 +33,9 @@ public:
 	BpTreeNode* getRoot() { return root; }
 	BpTreeNode* searchDataNode(string name);
 	void		searchRange(string start, string end);
+    EmployeeData* search(string name);
+    BpTreeDataNode* getFirstDataNode();
+    void collectRange(string start, string end, std::vector<EmployeeData*>& buffer);
 };
 
 #endif

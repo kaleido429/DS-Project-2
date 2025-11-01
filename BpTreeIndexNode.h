@@ -7,23 +7,33 @@
 
 class BpTreeIndexNode : public BpTreeNode {
 private:
-	map <string, BpTreeNode*> mapIndex;
+	map <string, BpTreeNode*> mapIndex; // index map <key,value> => <name, BpTreeNode*>
 
 public:
+	// constructor
 	BpTreeIndexNode() {}
-	~BpTreeIndexNode() {
 
+	// destructor
+	~BpTreeIndexNode() {
 	}
 
-
+	// insert index map, <name, BpTreeNode*> => <string, BpTreeNode*>
 	void insertIndexMap(string name, BpTreeNode* pN) {
+		/*
+		1. find leaf node, using key(name)
+		2. insert <name, BpTreeNode*> into mapIndex
+		3. if need to split, middle node's key is promoted to parent node
+		4. repeat 3 until don't need to split or reach root
+		*/
 		mapIndex.insert(map<string, BpTreeNode*>::value_type(name, pN));
 	}
 
+	// delete index map(key: name)
 	void deleteMap(string name) {
 		mapIndex.erase(name);
 	}
 
+	// return index map
 	map <string, BpTreeNode*>* getIndexMap() { return &mapIndex; }
 
 };

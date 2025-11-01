@@ -2,21 +2,41 @@
 #include "SelectionTree.h"
 #include "BpTree.h"
 #include <fstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 class Manager {
 private:
 	char* cmd;
 	BpTree* bptree;
 	SelectionTree* stree;
+    bool isLoaded;
 
 public:
 	Manager(int bpOrder) {		//constructor
-		
+		cmd = NULL;
+		bptree = NULL;
+		stree = NULL;
+		isLoaded = false;
+		flog.open("log.txt", std::ios::out | std::ios::trunc);
+		if (!flog.is_open()) {
+			throw std::runtime_error("Failed to open log file");
+		}
+		bptree = new BpTree(&flog, bpOrder);
+		stree = new SelectionTree(&flog);
 	}
 
 
 	~Manager() {				//destructor
-		
+		delete bptree;
+		delete stree;
+		if (fin.is_open()) {
+			fin.close();
+		}
+		if (flog.is_open()) {
+			flog.close();
+		}
 	}
 
 	ifstream fin;
@@ -35,5 +55,9 @@ public:
 
 	void printErrorCode(int n);
 	void printSuccessCode(string success);
+
+private:
+	bool isValidDepartment(int dept_no);
+	std::vector<std::string> parsedArgs;
 };
 
