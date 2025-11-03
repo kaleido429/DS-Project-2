@@ -28,10 +28,6 @@ public:
 
 	// insert datamap, <name, EmployeeData*> => <string, EmployeeData*>  
 	void insertDataMap(string name, EmployeeData* pN) {
-		/*
-		1. 
-		
-		*/
 		mapData.insert(map<string, EmployeeData*>::value_type(name, pN));
 	}
 

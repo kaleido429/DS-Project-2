@@ -15,11 +15,12 @@ public:
 
 	// destructor
 	~BpTreeIndexNode() {
+		// B+ tree's destructor( BpTree::~BpTree() ) releases memory
 	}
 
 	// insert index map, <name, BpTreeNode*> => <string, BpTreeNode*>
 	void insertIndexMap(string name, BpTreeNode* pN) {
-		/*
+		/* note
 		1. find leaf node, using key(name)
 		2. insert <name, BpTreeNode*> into mapIndex
 		3. if need to split, middle node's key is promoted to parent node

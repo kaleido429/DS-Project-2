@@ -12,7 +12,14 @@ private:
     int income;
 
 public:
-    EmployeeData() {};
+    // constructor
+    EmployeeData() {
+        name = "";
+        dept_no = 0;
+        id = 0;
+        income = 0;
+    };
+    // destructor
     ~EmployeeData() {};
 
     void setData(string name, int dept_no, int id, int income) {

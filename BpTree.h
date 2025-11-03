@@ -16,7 +16,12 @@ private:
 	std::ofstream* fout;
 
 public:
-	BpTree(std::ofstream *fout, int order = 3) {
+    /* note
+	b+ tree's order = m
+	index node's max keys = m-1 , min keys = (m/2)-1
+	data node's max keys = m-1 , min keys = (m/2)-1
+	*/
+	BpTree(std::ofstream *fout, int order = 3) { // default order is 3
 		this->fout = fout;
 		root = NULL;
 		this->order = order;
