@@ -170,7 +170,7 @@ void Manager::ADD_BP() {
 		printErrorCode(200);
 		return;
 	}
-	flog << "========ADD_BP========\n";
+	flog << "========ADD_BP======\n";
 	flog << name << "/" << dept << "/" << id << "/" << income << "\n";
 	flog << "====================\n\n";
 }
@@ -181,7 +181,7 @@ void Manager::SEARCH_BP_NAME(string name) {
 		printErrorCode(300);
 		return;
 	}
-	flog << "========SEARCH_BP========\n";
+	flog << "======SEARCH_BP=====\n";
 	flog << data->getName() << "/" << data->getDeptNo() << "/" << data->getID() << "/" << data->getIncome() << "\n";
 	flog << "====================\n\n";
 }
@@ -197,7 +197,7 @@ void Manager::SEARCH_BP_RANGE(string start, string end) {
 		printErrorCode(300);
 		return;
 	}
-	flog << "========SEARCH_BP========\n";
+	flog << "=====SEARCH_BP======\n";
 	for (EmployeeData* data : buffer) {
 		flog << data->getName() << "/" << data->getDeptNo() << "/" << data->getID() << "/" << data->getIncome() << "\n";
 	}
@@ -268,7 +268,7 @@ void Manager::PRINT_BP() {
 		printErrorCode(400);
 		return;
 	}
-	flog << "========PRINT_BP========\n";
+	flog << "======PRINT_BP======\n";
 	for (EmployeeData* data : list) {
 		flog << data->getName() << "/" << data->getDeptNo() << "/" << data->getID() << "/" << data->getIncome() << "\n";
 	}
@@ -291,7 +291,7 @@ void Manager::PRINT_ST() {
 			printErrorCode(600);
 			return;
 		}
-		flog << "========PRINT_ST========\n";
+		flog << "=====PRINT_ST=======\n";
 		for (EmployeeData* data : buffer) {
 			flog << data->getName() << "/" << data->getDeptNo() << "/" << data->getID() << "/" << data->getIncome() << "\n";
 		}
@@ -320,7 +320,7 @@ void Manager::printErrorCode(int n) {
 }
 
 void Manager::printSuccessCode(string success) {
-	flog << "========" << success << "========\n";
+	flog << "=======" << success << "=======\n";
 	flog << "Success" << "\n";
 	flog << "====================\n\n";
 }
