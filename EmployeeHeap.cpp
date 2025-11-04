@@ -86,21 +86,26 @@ void EmployeeHeap::DownHeap(int index) {
 // heap array resize (*2)
 void EmployeeHeap::ResizeArray() {
 	int new_capacity = max_capacity * 2;
-	EmployeeData** newArr = new EmployeeData*[new_capacity + 1];
+	EmployeeData** new_arr = new EmployeeData*[new_capacity + 1];
+	// initialize new array
 	for (int i = 0; i <= new_capacity; ++i) {
-		newArr[i] = nullptr;
+		new_arr[i] = nullptr;
 	}
+
+	// copy element, heap arr -> new arr
 	for (int i = 1; i <= data_num; ++i) {
-		newArr[i] = heap_arr[i];
+		new_arr[i] = heap_arr[i];
 	}
-	delete[] heap_arr;
-	heap_arr = newArr;
-	max_capacity = new_capacity;
+	delete[] heap_arr; // delete old array
+	heap_arr = new_arr; // change array pointer
+	max_capacity = new_capacity; // change capacity
 }
 
+// call all EmployeeData pointers in the heap
 void EmployeeHeap::Collect(std::vector<EmployeeData*>& buffer) {
+	// copy all elements heap -> buffer
 	for (int i = 1; i <= data_num; ++i) {
-		if (heap_arr[i]) {
+		if (heap_arr[i]) { // heap arr[i] exists
 			buffer.push_back(heap_arr[i]);
 		}
 	}
