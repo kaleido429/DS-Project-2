@@ -5,10 +5,10 @@
 class SelectionTreeNode {
 private:
     EmployeeData* pData;
-    SelectionTreeNode* pLeft;
-    SelectionTreeNode* pRight;
-    SelectionTreeNode* pParent;
-    EmployeeHeap* hRoot;
+    SelectionTreeNode* pLeft; // left child
+    SelectionTreeNode* pRight; // right child
+    SelectionTreeNode* pParent; // parent node
+    EmployeeHeap* hRoot; // heap root
 
 public:
     SelectionTreeNode() {

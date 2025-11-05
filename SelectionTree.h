@@ -6,26 +6,28 @@
 class SelectionTree {
 private:
     SelectionTreeNode* root;
-    std::ofstream* fout;
-    SelectionTreeNode* run[8];
+    std::ofstream* fout; 
+    SelectionTreeNode* run[8]; // 8 runs -> 8 leaf nodes
 
 public:
+    // constructor
     SelectionTree(std::ofstream* fout) {
         this->fout = fout;
         root = nullptr;
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < 8; ++i) { // initialize run nodes
             run[i] = nullptr;
         }
         setTree();
     }
 
+    // destructor
     ~SelectionTree() {
         if (!root) {
             return;
         }
         vector<SelectionTreeNode*> nodes;
         nodes.push_back(root);
-        for (size_t i = 0; i < nodes.size(); ++i) {
+        for (size_t i = 0; i < nodes.size(); ++i) { // traverse tree, BFS
             SelectionTreeNode* node = nodes[i];
             if (node->getLeftChild()) {
                 nodes.push_back(node->getLeftChild());
@@ -34,7 +36,7 @@ public:
                 nodes.push_back(node->getRightChild());
             }
         }
-        for (SelectionTreeNode* node : nodes) {
+        for (SelectionTreeNode* node : nodes) { // delete all nodes
             delete node;
         }
         root = nullptr;

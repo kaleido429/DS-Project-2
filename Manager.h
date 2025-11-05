@@ -14,7 +14,8 @@ private:
     bool isLoaded;
 
 public:
-	Manager(int bpOrder) {		//constructor
+    //constructor
+	Manager(int bpOrder) {
 		cmd = NULL;
 		bptree = NULL;
 		stree = NULL;
@@ -27,8 +28,8 @@ public:
 		stree = new SelectionTree(&flog);
 	}
 
-
-	~Manager() {				//destructor
+	//destructor
+	~Manager() {
 		delete bptree;
 		delete stree;
 		if (fin.is_open()) {
