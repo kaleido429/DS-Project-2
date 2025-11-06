@@ -169,9 +169,12 @@ bool SelectionTree::collectEmployeeData(int dept_no, std::vector<EmployeeData*>&
 	if (buffer.empty()) { // no data collected
 		return false;
 	}
-	// Sort by name to match the required output order for PRINT_ST.
+	// Sort by PRINT_ST requirement: income desc, then name asc, then ID asc
 	std::sort(buffer.begin(), buffer.end(), [](EmployeeData* lhs, EmployeeData* rhs) {
-		if (lhs->getName() != rhs->getName()) { // compare by name
+		if (lhs->getIncome() != rhs->getIncome()) {
+			return lhs->getIncome() > rhs->getIncome();
+		}
+		if (lhs->getName() != rhs->getName()) {
 			return lhs->getName() < rhs->getName();
 		}
 		return lhs->getID() < rhs->getID();
